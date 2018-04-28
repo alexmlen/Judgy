@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import logo from '../../images/logo.png';
 import DefaultProfile from '../../images/profile.png';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
 import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import { MenuItem } from 'material-ui/Menu';
+import SignOutButton from '../..//components/Logout/logout';
+
+import withAuthorization from '../../components/withAuth/withAuthorization';
 
 class Home extends Component {
   constructor() {
     super();
     this.state = {
-      profilePicture: "",
     };
   }
   
   render() {
-    const profilePicture = this.state.profilePicture === "" ? DefaultProfile : profilePicture;
+    const { users } = this.state;
 
     return (
       <div className="landing">
         <img src={logo} alt="logo" className="App-logo"/>
         <p>This is the home page!</p>
+        <p>The Home Page is accessible by every signed in user.</p>
         <Drawer
         variant="permanent"
         anchor="left"
         >
           <MenuItem>Welcome, User!</MenuItem>
           <Divider /> 
-          <img src={profilePicture} alt="profile-picture"/>
+          <img src={DefaultProfile} alt="profile"/>
           <Divider /> 
           <MenuItem>Account Settings</MenuItem>
           <Divider /> 
@@ -38,11 +38,24 @@ class Home extends Component {
           <MenuItem>Create Competition</MenuItem>
           <Divider /> 
           <MenuItem>Report Issue</MenuItem>
-          <MenuItem>Logout</MenuItem>
+          <li><SignOutButton /></li>
         </Drawer>
       </div>
     );
   }
 }
 
-export default Home;
+const UserList = ({ users }) =>
+  <div>
+    <h2>List of Usernames of Users</h2>
+    <p>(Saved on Sign Up in Firebase Database)</p>
+
+    {Object.keys(users).map(key =>
+      <div key={key}>{users[key].username}</div>
+    )}
+  </div>
+
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Home);
+
