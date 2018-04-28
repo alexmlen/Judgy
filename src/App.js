@@ -9,18 +9,20 @@ import SignupPage from './pages/Signup/signup';
 import PasswordForgetPage from './pages/PasswordForget/passwordForget';
 import AccountPage from './pages/Account/account';
 
+import * as routes from './constants/routes';
+
 class App extends Component {
   render() {
     return (
       <div>
         <Router>
           <div>
-            <Route exact path="/" component={LoginPage} />
-            <Route exact path="/login" component={LoginPage} />
-            <Route exact path="/home" component={HomePage} />
-            <Route exact path="/signup" component={SignupPage} />
-            <Route exact path="/pw-forget" component={PasswordForgetPage} />
-            <Route exact path="/account" component={AccountPage} />
+            <Route exact path={routes.LANDING} component={LoginPage} />
+            <Route exact path={routes.LOGIN} component={LoginPage} />
+            <Route exact path={routes.HOME} component={HomePage} />
+            <Route exact path={routes.SIGN_UP} component={SignupPage} />
+            <Route exact path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
+            <Route exact path={routes.ACCOUNT} component={AccountPage} />
           </div>
         </Router>
       </div>
