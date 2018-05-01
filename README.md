@@ -15,7 +15,7 @@ There is a template page which can be used to create new pages under
 
 `src/pages/template/template.js`
 
-###Firebase and Retrieveing Data
+##Firebase and Retrieveing Data
 
 Be careful if you plan to change anything in the firebase folder. I have already set up a method that would call data for you.
 
@@ -34,6 +34,6 @@ The path you would enter would be `username`. The method would then call `/users
 You can then use the data variable to do whatever you need.
 
 
-###Firebase and Writing Data
+##Firebase and Writing Data
 
 Not yet added in
