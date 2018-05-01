@@ -15,9 +15,10 @@ class Template extends Component {
 
   //var userId = authUser.uid;
   //var data;
-  //db.onceGetData(Put the path here).then(function(snapshot) { data = (snapshot.val() && snapshot.val().DATA_NAME) || 'Anonymous';
+  //db.onceGetData(PUT PATH HERE).then(function(snapshot) { data = (snapshot.val() && snapshot.val().DATA_NAME) || 'Anonymous';
 
-  //For example the path `userId` and snapshot.val().username would get the user's username from the database
+  //For example `userId` and `snapshot.val().username` would get the user's username from the database.
+  //The path you would enter would be `userId` and the desired data is `username`. The method would then call `/users/username`
 
   //the flexgrow div is where youo put the page's content in
   //AuthUserContext.Consumer is for getting data from the user profile already loaded in (email, displayName, uid, etc.) not from the database

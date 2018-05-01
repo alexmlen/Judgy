@@ -28,8 +28,8 @@ var data;
 db.onceGetData(PUT PATH HERE).then(function(snapshot) { data = (snapshot.val() && snapshot.val().DATA_NAME) || 'Anonymous';
 ```
 
-For example `userId` and snapshot.val().username would get the user's username from the database.
-The path you would enter would be `username`. The method would then call `/users/username`
+For example `userId` and `snapshot.val().username` would get the user's username from the database.
+The path you would enter would be `userId` and the desired data is `username`. The method would then call `/users/username`
 
 You can then use the data variable to do whatever you need.
 
