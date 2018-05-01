@@ -44,8 +44,20 @@ class SignUpForm extends Component {
       .then(authUser => {
         // Create a user in your own accessible Firebase Database too
         db.doCreateUser(authUser.uid, username, email)
+<<<<<<< HEAD
           .then(() => {
             this.setState(() => ({ ...INITIAL_STATE }));
+=======
+          .then((user) => {
+            this.setState(() => ({ ...INITIAL_STATE }));
+            user.updateProfile({
+            }).then(function() {
+              var displayName = username;
+              console.log(username);
+            }, function(error) {
+              this.setState(byPropKey('error', error));
+            });
+>>>>>>> master
             history.push(routes.HOME);
           })
           .catch(error => {

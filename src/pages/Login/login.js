@@ -42,7 +42,11 @@ class LoginForm extends Component {
     } = this.props;
 
     auth.doLoginWithEmailAndPassword(email, password)
+<<<<<<< HEAD
       .then(() => {
+=======
+      .then((user) => {
+>>>>>>> master
         this.setState(() => ({ ...INITIAL_STATE }));
         history.push(routes.HOME);
       })

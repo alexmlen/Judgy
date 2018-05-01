@@ -9,4 +9,14 @@ export const doCreateUser = (id, username, email) =>
   });
 
 export const onceGetUsers = () =>
+<<<<<<< HEAD
   db.ref('users').once('value');
+=======
+  db.ref('users').once('value');
+
+export const onceGetUser = (userId) =>
+  db.ref('/users/' + userId).once('value');
+
+  export const onceGetData = (data) =>
+  db.ref('/users/' + data).once('value');
+>>>>>>> master

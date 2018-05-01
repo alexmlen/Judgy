@@ -4,8 +4,17 @@ import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import { PasswordForgetForm } from '../PasswordForget/passwordForget';
 import PasswordChangeForm from '../PasswordChange/passwordChange';
 import withAuthorization from '../../components/withAuth/withAuthorization';
+<<<<<<< HEAD
 
 const AccountPage = () =>
+=======
+import Sidebar from '../../components/sidebar/sidebar';
+
+const AccountPage = () =>
+  <div className="page">
+  <Sidebar />
+  <div style={{flexGrow: 1}}>
+>>>>>>> master
   <AuthUserContext.Consumer>
     {authUser =>
       <div>
@@ -15,6 +24,11 @@ const AccountPage = () =>
       </div>
     }
   </AuthUserContext.Consumer>
+<<<<<<< HEAD
+=======
+  </div>
+  </div>
+>>>>>>> master
 
 const authCondition = (authUser) => !!authUser;
 
