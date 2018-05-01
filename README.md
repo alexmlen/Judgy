@@ -9,7 +9,7 @@ Libraries used are
 
 They are not included. They are normally located in the `node modules` folder. Create a react js app called judgy and install the proper dependencies into it listed above. Then, copy all files from the GitHub into the project.
 
-### Template Page
+## Template Page
 
 There is a template page which can be used to create new pages under
 
@@ -32,7 +32,6 @@ For example `userId` and `snapshot.val().username` would get the user's username
 The path you would enter would be `userId` and the desired data is `username`. The method would then call `/users/username`
 
 You can then use the data variable to do whatever you need.
-
 
 ##Firebase and Writing Data
 
