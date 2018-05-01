@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import Drawer from 'material-ui/Drawer';
+import React from 'react';
 import Divider from 'material-ui/Divider';
 import { MenuItem } from 'material-ui/Menu';
 import SignOutButton from '../Logout/logout';

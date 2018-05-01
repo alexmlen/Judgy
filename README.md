@@ -1,17 +1,10 @@
 ## Judgy Info - Must Read
 
-<<<<<<< HEAD
-Remember to install the required libraries
-=======
 Libraries used are
->>>>>>> master
 
 - React v16.3.2
 - Material UI Next
 - Firebase
-<<<<<<< HEAD
-- React Router Dom
-=======
 - React Router Dom
 
 They are not included. They are normally located in the `node modules` folder. Create a react js app called judgy and install the proper dependencies into it listed above. Then, copy all files from the GitHub into the project.
@@ -44,4 +37,3 @@ You can then use the data variable to do whatever you need.
 ##Firebase and Writing Data
 
 Not yet added in
->>>>>>> master

@@ -16,17 +16,18 @@ auth.signOut();
 export const doPasswordReset = (email) =>
 auth.sendPasswordResetEmail(email);
 
-<<<<<<< HEAD
-=======
 // Get Username
 export const getDisplayname = (uid) =>
 auth.getUser(uid);
+
+// Send Verification Email
+export const sendVerification = (uid) =>
+auth.sendEmailVerification();
 
 // Get User
 export const getUser = (uid) =>
 auth.getUser(uid);
 
->>>>>>> master
 // Password Change
 export const doPasswordUpdate = (password) =>
 auth.currentUser.updatePassword(password);

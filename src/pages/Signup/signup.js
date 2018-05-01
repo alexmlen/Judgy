@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 
-import * as routes from '../../constants/routes';
-
 const SignUpPage = ({ history }) =>
   <div>
     <h1>SignUp</h1>
     <SignUpForm history={history} />
+    <div>Enter a valid email and password.</div>
+    <div>Passwords must be at least 8 characters.</div>
   </div>
 
 const INITIAL_STATE = {
@@ -17,6 +17,9 @@ const INITIAL_STATE = {
   passwordTwo: '',
   error: null,
 };
+
+
+class CustomError extends Error {};
 
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
@@ -36,29 +39,24 @@ class SignUpForm extends Component {
       passwordOne,
     } = this.state;
 
-    const {
-      history,
-    } = this.props;
-
+    var success = false;
     auth.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
         // Create a user in your own accessible Firebase Database too
         db.doCreateUser(authUser.uid, username, email)
-<<<<<<< HEAD
-          .then(() => {
-            this.setState(() => ({ ...INITIAL_STATE }));
-=======
           .then((user) => {
             this.setState(() => ({ ...INITIAL_STATE }));
-            user.updateProfile({
-            }).then(function() {
-              var displayName = username;
-              console.log(username);
-            }, function(error) {
-              this.setState(byPropKey('error', error));
-            });
->>>>>>> master
-            history.push(routes.HOME);
+            if (authUser) {
+              authUser.sendEmailVerification().then(function() {
+                // Email sent.
+                success = true;
+               }, function(error) {
+                // An error happened./
+                this.setState(byPropKey('error', error));
+               });
+            }
+            auth.doLogout();
+            //history.push(routes.HOME);
           })
           .catch(error => {
             this.setState(byPropKey('error', error));
@@ -67,7 +65,11 @@ class SignUpForm extends Component {
       .catch(error => {
         this.setState(byPropKey('error', error));
       });
-
+    if (success) {
+      const error = new CustomError();
+      error.message = "Success! Please check your email to finish verification.";
+      this.setState(byPropKey('error', error));
+    }
     event.preventDefault();
   }
 
@@ -84,7 +86,8 @@ class SignUpForm extends Component {
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
       email === '' ||
-      username === '';
+      username === '' ||
+      passwordOne.length < 8;
 
     return (
       <form onSubmit={this.onSubmit}>
