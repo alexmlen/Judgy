@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 import './App.css';
-import Landing from './pages/Landing/landing';
-import Home from './pages/Home/home';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import withAuthentication from './components/withAuth/withAuthentication';
+import LandingPage from './pages/Landing/landing';
+import HomePage from './pages/Home/home';
+import LoginPage from './pages/Login/login';
+import SignupPage from './pages/Signup/signup';
+import PasswordForgetPage from './pages/PasswordForget/passwordForget';
+import AccountPage from './pages/Account/account';
+
+import * as routes from './constants/routes';
 
 class App extends Component {
   render() {
@@ -10,8 +17,12 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Route exact path="/" component={Landing} />
-            <Route path="/home" component={Home} />
+            <Route exact path={routes.LANDING} component={LoginPage} />
+            <Route exact path={routes.LOGIN} component={LoginPage} />
+            <Route exact path={routes.HOME} component={HomePage} />
+            <Route exact path={routes.SIGN_UP} component={SignupPage} />
+            <Route exact path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
+            <Route exact path={routes.ACCOUNT} component={AccountPage} />
           </div>
         </Router>
       </div>
@@ -19,4 +30,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withAuthentication(App);

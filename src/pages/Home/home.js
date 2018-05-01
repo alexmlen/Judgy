@@ -1,48 +1,55 @@
 import React, { Component } from 'react';
 import logo from '../../images/logo.png';
-import DefaultProfile from '../../images/profile.png';
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import { MenuItem } from 'material-ui/Menu';
+import Sidebar from '../../components/sidebar/sidebar';
+
+import AuthUserContext from '../../components/withAuth/AuthUserContext';
+import withAuthorization from '../../components/withAuth/withAuthorization';
+import { db } from '../../firebase';
 
 class Home extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
     this.state = {
-      profilePicture: "",
+      users: null,
     };
+  }
+
+  componentDidMount() {
+    db.onceGetUsers().then(snapshot =>
+      this.setState(() => ({ users: snapshot.val() }))
+    );
   }
   
   render() {
-    const profilePicture = this.state.profilePicture === "" ? DefaultProfile : profilePicture;
+    const { users } = this.state;
 
     return (
-      <div className="landing">
+      <div className="page-centered">
+        <Sidebar/>
+        <div style={{flexGrow: 1}}>
         <img src={logo} alt="logo" className="App-logo"/>
         <p>This is the home page!</p>
-        <Drawer
-        variant="permanent"
-        anchor="left"
-        >
-          <MenuItem>Welcome, User!</MenuItem>
-          <Divider /> 
-          <img src={profilePicture} alt="profile-picture"/>
-          <Divider /> 
-          <MenuItem>Account Settings</MenuItem>
-          <Divider /> 
-          <MenuItem>Enter Competition</MenuItem>
-          <MenuItem>Judge Competition</MenuItem>
-          <MenuItem>Create Competition</MenuItem>
-          <Divider /> 
-          <MenuItem>Report Issue</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </Drawer>
+        <p>{}</p>
+        <p>The Home Page is accessible by every signed in user.</p>
+        { !!users && <UserList users={users} /> }
+        </div>
       </div>
     );
   }
 }
 
-export default Home;
+const UserList = ({ users }) =>
+  <div>
+    <h2>List of Usernames of Users</h2>
+    <p>(Saved on Sign Up in Firebase Database)</p>
+
+    {Object.keys(users).map(key =>
+      <div key={key}>{users[key].username}</div>
+    )}
+  </div>
+
+const authCondition = (authUser) => !!authUser;
+
+export default withAuthorization(authCondition)(Home);
+

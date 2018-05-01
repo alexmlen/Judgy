@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Redirect } from "react-router-dom";
 import logo from '../../images/logo.png';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import Divider from 'material-ui/Divider';
 
 const styles = {
   container: {
@@ -55,6 +56,7 @@ class Landing extends Component {
 
     return (
       <div className="landing">
+        <Redirect from="/" to="/login" />  
         <img src={logo} alt="logo" className="App-logo"/>
         <form className={styles.container}>
           <div>
@@ -78,13 +80,17 @@ class Landing extends Component {
             />
           </div>
             <p style={styles.text}>
-              Not a user? <a href="https://my.sjsu.edu/">Register here</a>
-             </p>
-            <p style={styles.text}>
-            <a href="https://my.sjsu.edu/">Forgot password?</a>
-         </p>
+             <a href="https://my.sjsu.edu/">Forgot password?</a>
+            </p>
         </form>
         <Button variant="raised" onClick={this.handleClick.bind(this)} >Sign in</Button>
+        <p></p>
+        <div>
+        <Divider/> 
+        </div>
+        <p style={styles.text}>
+              Not a user? <a href="https://my.sjsu.edu/">Register here</a>
+        </p>
       </div>
     );
   }
