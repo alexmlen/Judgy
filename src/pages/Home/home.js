@@ -12,7 +12,7 @@ class Home extends Component {
     this.state = {
     };
   }
-  
+
   render() {
     const { users } = this.state;
 
@@ -22,7 +22,6 @@ class Home extends Component {
         <div style={{flexGrow: 1}}>
         <img src={logo} alt="logo" className="App-logo"/>
         <p>This is the home page!</p>
-        <p>{}</p>
         <p>The Home Page is accessible by every signed in user.</p>
         </div>
       </div>
@@ -33,4 +32,3 @@ class Home extends Component {
 const authCondition = (authUser) => !!authUser;
 
 export default withAuthorization(authCondition)(Home);
-

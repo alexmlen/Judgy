@@ -31,3 +31,6 @@ auth.getUser(uid);
 // Password Change
 export const doPasswordUpdate = (password) =>
 auth.currentUser.updatePassword(password);
+
+export const getUserID = () =>
+auth.currentUser.uid;

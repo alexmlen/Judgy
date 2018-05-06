@@ -5,6 +5,7 @@ import { BrowserRouter as Redirect } from "react-router-dom";
 import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
+import { auth } from '../../firebase';
 
 class Creation extends Component{
   constructor(props){
@@ -25,7 +26,7 @@ class Creation extends Component{
   }
 
   handleSubmit(event){
-    db.doCreateCompetition(this.state.competitionName, "userID", this.state.competitorFields, this.state.judgeFields);
+    db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
     alert(this.state.competitionName + ' has been created.');
     event.preventDefault();
     this.setState({ redirect: true });
@@ -97,9 +98,9 @@ class Creation extends Component{
   }
 
   render(){
-    if(this.state.redirect){
-      return <Redirect to="/home"/>
-    }
+    // if(this.state.redirect){
+    //   return <Redirect to="/home"/>
+    // }
 
     return(
       <div className="page-centered">

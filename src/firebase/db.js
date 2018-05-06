@@ -1,4 +1,5 @@
 import { db } from './firebase';
+import { auth } from './firebase';
 
 // User API
 
@@ -27,10 +28,24 @@ export const onceGetUser = (userId) =>
   //     creator,
   //   });
 
-  export const doCreateCompetition = (competitionName, creator, competitorApplication, judgeApplication) =>
-    db.ref('/competitions/').push().set({
+  // export const doCreateCompetition = (competitionName, creator, competitorApplication, judgeApplication) =>
+  //   db.ref('/competitions/').push().set({
+  //     competitionName,
+  //     creator,
+  //     competitorApplication,
+  //     judgeApplication,
+  //   });
+
+  export function doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
+    var compKey = db.ref('/competitions/').push().key;
+    db.ref('/users/' + creator + '/competitions/').push({
+      compKey
+    });
+    db.ref('/competitions/' + compKey).set({
       competitionName,
       creator,
       competitorApplication,
       judgeApplication,
     });
+
+  }
