@@ -16,3 +16,21 @@ export const onceGetUser = (userId) =>
 
   export const onceGetData = (data) =>
   db.ref('/users/' + data).once('value');
+
+  export const onceGetCompetitionCount = () =>
+  db.ref('/competitions/count').once('value');
+
+  // In case push idea doesn't work
+  // this will but requires unique competition names
+  // export const doCreateCompetition = (competitionName, creator) =>
+  //   db.ref(`competitions/${competitionName}`).set()
+  //     creator,
+  //   });
+
+  export const doCreateCompetition = (competitionName, creator, competitorApplication, judgeApplication) =>
+    db.ref('/competitions/').push().set({
+      competitionName,
+      creator,
+      competitorApplication,
+      judgeApplication,
+    });

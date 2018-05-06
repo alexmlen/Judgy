@@ -9,6 +9,7 @@ import SignupPage from './pages/Signup/signup';
 import PasswordForgetPage from './pages/PasswordForget/passwordForget';
 import AccountPage from './pages/Account/account';
 import AdminPage from './pages/Admin/admin';
+import CompCreation from './pages/Competition/creation';
 
 import * as routes from './constants/routes';
 
@@ -25,6 +26,7 @@ class App extends Component {
             <Route exact path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
             <Route exact path={routes.ADMIN} component={AdminPage} />
+            <Route exact path={routes.CREATION} component={CompCreation} />
           </div>
         </Router>
       </div>

@@ -27,15 +27,15 @@ const sidebar = ({ history }) =>
       }
     </AuthUserContext.Consumer>
     </MenuItem>
-    <Divider /> 
+    <Divider />
     <img src={DefaultProfile} alt="profile"/>
-    <Divider /> 
+    <Divider />
     <MenuItem onClick={event => history.push(routes.HOME)}>Home</MenuItem>
-    <Divider /> 
+    <Divider />
     <MenuItem onClick={event => history.push(routes.HOME)}>Enter Competition</MenuItem>
     <MenuItem onClick={event => history.push(routes.HOME)}>Judge Competition</MenuItem>
-    <MenuItem onClick={event => history.push(routes.HOME)}>Create Competition</MenuItem>
-    <Divider /> 
+    <MenuItem onClick={event => history.push(routes.CREATION)}>Create Competition</MenuItem>
+    <Divider />
     <MenuItem onClick={event => history.push(routes.ACCOUNT)}>Settings</MenuItem>
     <MenuItem>Report Issue</MenuItem>
     <SignOutButton />
