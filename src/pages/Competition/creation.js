@@ -13,6 +13,7 @@ class Creation extends Component{
       competitionName: 'Enter a name for the competition',
       competitorFields: [''],
       judgeFields: [''],
+      redirect: false,
     };
 
     this.handleCompetitionNameChange = this.handleCompetitionNameChange.bind(this);
@@ -27,6 +28,7 @@ class Creation extends Component{
     db.doCreateCompetition(this.state.competitionName, "userID", this.state.competitorFields, this.state.judgeFields);
     alert(this.state.competitionName + ' has been created.');
     event.preventDefault();
+    this.setState({ redirect: true });
     //return <Redirect to="/home"/> //Not working as intended
   }
 
@@ -95,7 +97,9 @@ class Creation extends Component{
   }
 
   render(){
-    const { users } = this.state;
+    if(this.state.redirect){
+      return <Redirect to="/home"/>
+    }
 
     return(
       <div className="page-centered">

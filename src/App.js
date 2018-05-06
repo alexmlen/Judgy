@@ -11,9 +11,17 @@ import AccountPage from './pages/Account/account';
 import AdminPage from './pages/Admin/admin';
 import CompCreation from './pages/Competition/creation';
 
+import { auth } from './firebase/firebase';
+
 import * as routes from './constants/routes';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    auth.auth().onAuthStateChanged(function(user){
+      this.setState({ user: user });
+    })
+  }
   render() {
     return (
       <div>
