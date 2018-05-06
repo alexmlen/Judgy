@@ -30,7 +30,6 @@ class Creation extends Component{
     alert(this.state.competitionName + ' has been created.');
     event.preventDefault();
     this.setState({ redirect: true });
-    //return <Redirect to="/home"/> //Not working as intended
   }
 
   doCreateCompetitorForm(){
@@ -101,6 +100,7 @@ class Creation extends Component{
     // if(this.state.redirect){
     //   return <Redirect to="/home"/>
     // }
+    // Persistence is broken as it takes you to login screen
 
     return(
       <div className="page-centered">
