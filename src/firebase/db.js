@@ -49,3 +49,12 @@ export const onceGetUser = (userId) =>
     });
 
   }
+
+  export function joinCompetition(compKey, contestant){
+    db.ref('/competitions/' + compKey).push({
+      contestant
+    });
+    db.ref('/users/' + contestant + '/competitions/').push({
+      compKey
+    });
+  }
