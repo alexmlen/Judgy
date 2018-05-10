@@ -6,6 +6,7 @@ Libraries used are
 - Material UI Next
 - Firebase
 - React Router Dom
+- URLSearchParams Polyfill (npm install url-search-params-polyfill)
 
 They are not included. They are normally located in the `node modules` folder. Create a react js app called judgy and install the proper dependencies into it listed above. Then, copy all files from the GitHub into the project.
 
