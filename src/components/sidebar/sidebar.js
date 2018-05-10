@@ -34,6 +34,7 @@ const sidebar = ({ history }) =>
     <Divider />
     <MenuItem onClick={event => history.push(routes.HOME)}>Enter Competition</MenuItem>
     <MenuItem onClick={event => history.push(routes.HOME)}>Judge Competition</MenuItem>
+    <MenuItem onClick={event => history.push(routes.JOIN)}>Join Competition</MenuItem>
     <MenuItem onClick={event => history.push(routes.CREATION)}>Create Competition</MenuItem>
     <Divider />
     <MenuItem onClick={event => history.push(routes.ACCOUNT)}>Settings</MenuItem>

@@ -10,6 +10,7 @@ import PasswordForgetPage from './pages/PasswordForget/passwordForget';
 import AccountPage from './pages/Account/account';
 import AdminPage from './pages/Admin/admin';
 import CompCreation from './pages/Competition/creation';
+import JoinCompetition from './pages/Competition/join';
 
 import { auth } from './firebase/firebase';
 
@@ -28,7 +29,8 @@ class App extends Component {
             <Route exact path={routes.PASSWORD_FORGET} component={PasswordForgetPage} />
             <Route exact path={routes.ACCOUNT} component={AccountPage} />
             <Route exact path={routes.ADMIN} component={AdminPage} />
-            <Route exact path={routes.CREATION} component={CompCreation} />
+            <Route path="/competition-creation" component={CompCreation} />
+            <Route path="/join" component={JoinCompetition} />
           </div>
         </Router>
       </div>

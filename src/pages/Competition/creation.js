@@ -7,6 +7,8 @@ import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
 
+import 'url-search-params-polyfill';
+
 class Creation extends Component{
   constructor(props){
     super(props);
@@ -28,6 +30,9 @@ class Creation extends Component{
   handleSubmit(event){
     db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
     alert(this.state.competitionName + ' has been created.');
+    // Testing url parse library
+    // var search = new URLSearchParams(window.location.search);
+    // db.testFunction(search.get("authKey"));
     event.preventDefault();
     this.setState({ redirect: true });
   }

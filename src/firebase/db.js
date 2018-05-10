@@ -18,43 +18,79 @@ export const onceGetUser = (userId) =>
   export const onceGetData = (data) =>
   db.ref('/users/' + data).once('value');
 
-  export const onceGetCompetitionCount = () =>
-  db.ref('/competitions/count').once('value');
-
-  // In case push idea doesn't work
-  // this will but requires unique competition names
-  // export const doCreateCompetition = (competitionName, creator) =>
-  //   db.ref(`competitions/${competitionName}`).set()
-  //     creator,
-  //   });
-
-  // export const doCreateCompetition = (competitionName, creator, competitorApplication, judgeApplication) =>
-  //   db.ref('/competitions/').push().set({
-  //     competitionName,
-  //     creator,
-  //     competitorApplication,
-  //     judgeApplication,
-  //   });
-
   export function doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
     var compKey = db.ref('/competitions/').push().key;
     db.ref('/users/' + creator + '/competitions/').push({
       compKey
     });
+    var judgeKey = db.ref('/competitions/').push().key;
     db.ref('/competitions/' + compKey).set({
       competitionName,
       creator,
       competitorApplication,
       judgeApplication,
+      judgeKey,
     });
-
   }
 
-  export function joinCompetition(compKey, contestant){
-    db.ref('/competitions/' + compKey).push({
+  export function joinCompetitionContestant(compKey, contestant){
+    db.ref('/competitions/' + compKey + '/constestant/').push({
       contestant
     });
     db.ref('/users/' + contestant + '/competitions/').push({
       compKey
     });
+  }
+
+  export function joinCompetitionJudge(compKey, judge){
+    db.ref('/competitions/' + compKey + '/judge/').push({
+      judge
+    });
+    db.ref('/users/' + judge + '/competitions/').push({
+      compKey
+    });
+  }
+
+  // export function getCompetitionName(compKey){
+  //   var rootRef = db.ref();
+  //   var keyRef = rootRef.child("competitions/" + compKey + "/competitionName");
+  //   var name = new String();
+  //   keyRef.once("value", function(snapshot){
+  //     name = snapshot.val();
+  //   });
+  //   return name;
+  // }
+
+  export function checkJudgeKey(compKey, judgeKey){
+    var rootRef = db.ref();
+    var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
+    var confirm = true;
+    var test = new String(judgeKey);
+    var test2 = new String();
+
+    keyRef.on("value", function(snapshot){
+      test2 = snapshot.val();
+      if(test.length !== test2.length){
+        confirm = false;
+      } else {
+        for(var i = 0; i < test2.length; i++){
+          if(test.charAt(i) != test2.charAt(i)){
+            confirm = false;
+            break;
+            }
+          }
+        }
+    });
+
+    return confirm;
+  }
+
+  export function testFunction(compKey){
+    var rootRef = db.ref();
+    var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
+
+    keyRef.once("value", function(snapshot){
+      alert(snapshot.val());
+    });
+
   }
