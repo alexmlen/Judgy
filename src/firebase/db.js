@@ -60,27 +60,8 @@ export const onceGetUser = (userId) =>
   export function checkJudgeKey(compKey, judgeKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
-    var confirm = true;
-    var test = new String(judgeKey);
-    var test2 = new String();
-
-    keyRef.on("value", function(snapshot){
-      test2 = snapshot.val();
-      if(test2!=null && test!=null){
-      if(test.length !== test2.length){
-        confirm = false;
-      } else {
-        for(var i = 0; i < test2.length; i++){
-          if(test.charAt(i) != test2.charAt(i)){
-            confirm = false;
-            break;
-            }
-          }
-      }
-    }
-    });
-
-    return confirm;
+    
+    return keyRef.once("value", function(snapshot){});
   }
 
   export function getCompetitions(authID){
