@@ -11,7 +11,7 @@ import * as routes from '../../constants/routes';
 var bar = {
   height: "100%",
   minHeight: "100vh",
-  width: "11em",
+  width: "12em",
   borderStyle: "solid",
   borderWidth: "1px",
   borderColor: "rgb(224,224,224)",
@@ -32,8 +32,7 @@ const sidebar = ({ history }) =>
     <Divider />
     <MenuItem onClick={event => history.push(routes.HOME)}>Home</MenuItem>
     <Divider />
-    <MenuItem onClick={event => history.push(routes.HOME)}>Enter Competition</MenuItem>
-    <MenuItem onClick={event => history.push(routes.HOME)}>Judge Competition</MenuItem>
+    <MenuItem onClick={event => history.push(routes.MANAGE)}>Manage Competitions</MenuItem>
     <MenuItem onClick={event => history.push(routes.JOIN)}>Join Competition</MenuItem>
     <MenuItem onClick={event => history.push(routes.CREATION)}>Create Competition</MenuItem>
     <Divider />

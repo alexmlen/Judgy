@@ -51,15 +51,12 @@ export const onceGetUser = (userId) =>
     });
   }
 
-  // export function getCompetitionName(compKey){
-  //   var rootRef = db.ref();
-  //   var keyRef = rootRef.child("competitions/" + compKey + "/competitionName");
-  //   var name = new String();
-  //   keyRef.once("value", function(snapshot){
-  //     name = snapshot.val();
-  //   });
-  //   return name;
-  // }
+  export function getCompetitionName(compKey){
+    var rootRef = db.ref();
+    var keyRef = rootRef.child("competitions/" + compKey + "/competitionName");
+    var name = new String();
+    return keyRef.once("value", function(snapshot){});
+  }
 
   export function checkJudgeKey(compKey, judgeKey){
     var rootRef = db.ref();
@@ -70,6 +67,7 @@ export const onceGetUser = (userId) =>
 
     keyRef.on("value", function(snapshot){
       test2 = snapshot.val();
+      if(test2!=null && test!=null){
       if(test.length !== test2.length){
         confirm = false;
       } else {
@@ -79,18 +77,15 @@ export const onceGetUser = (userId) =>
             break;
             }
           }
-        }
+      }
+    }
     });
 
     return confirm;
   }
 
-  export function testFunction(compKey){
+  export function getCompetitions(authID){
     var rootRef = db.ref();
-    var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
-
-    keyRef.once("value", function(snapshot){
-      alert(snapshot.val());
-    });
-
+    var keyRef = rootRef.child("users/" + authID + "/competitions");
+    return keyRef.once("value", function(snapshot){});
   }

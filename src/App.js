@@ -11,6 +11,7 @@ import AccountPage from './pages/Account/account';
 import AdminPage from './pages/Admin/admin';
 import CompCreation from './pages/Competition/creation';
 import JoinCompetition from './pages/Competition/join';
+import ManageCompetitions from './pages/Competition/manage';
 
 import { auth } from './firebase/firebase';
 
@@ -31,6 +32,7 @@ class App extends Component {
             <Route exact path={routes.ADMIN} component={AdminPage} />
             <Route path="/competition-creation" component={CompCreation} />
             <Route path="/join" component={JoinCompetition} />
+            <Route path="/competitions" component={ManageCompetitions} />
           </div>
         </Router>
       </div>

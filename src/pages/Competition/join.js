@@ -6,11 +6,10 @@ import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
-import firebase from '../../firebase/firebase';
 
 import 'url-search-params-polyfill';
 
-class Creation extends Component{
+class Join extends Component{
   constructor(props){
     super(props);
     var search = new URLSearchParams(window.location.search);
@@ -18,6 +17,7 @@ class Creation extends Component{
       competitionKey: search.get("compKey"),
       id: search.get("id"),
       judge: false,
+      name: "",
     };
 
     this.handleCompetitionKey = this.handleCompetitionKey.bind(this);
@@ -29,6 +29,10 @@ class Creation extends Component{
     this.setState({
       competitionKey: event.target.value,
     });
+    var temp = db.getCompetitionName(this.state.competitionKey);
+    this.setState({
+      name: temp,
+    });
   }
 
   handleJudgeKey(event){
@@ -36,15 +40,19 @@ class Creation extends Component{
   }
 
   handleSubmit(event){
-    //var name = db.getCompetitionName(this.state.competitionKey);
-    alert(auth.getUserID());
-    if(db.checkJudgeKey(this.state.competitionKey, this.state.id)){
-      db.joinCompetitionJudge(this.state.competitionKey, auth.getUserID());
-      alert("You have successfully joined as a judge.");
-    } else {
-      db.joinCompetitionContestant(this.state.competitionKey, auth.getUserID());
-      alert("You have successfully joined as a contestant.");
-    };
+    var result = db.checkJudgeKey(this.state.competitionKey, this.state.id);
+    var compKey = this.state.competitionKey;
+    db.getCompetitionName(this.state.competitionKey).then(function(result){
+      if(result){
+        db.joinCompetitionJudge(compKey, auth.getUserID());
+        alert("You have successfully joined "
+        + result.val() + " as a judge.");
+      } else {
+        db.joinCompetitionContestant(compKey, auth.getUserID());
+        alert("You have successfully joined "
+        + result.val() + " as a contestant.");
+      };
+    });
 
     event.preventDefault();
   }
@@ -66,6 +74,7 @@ class Creation extends Component{
               <input
                 type="text"
                 value={this.state.competitionKey}
+                placeholder="Competition key"
                 onChange={this.handleCompetitionKey} />
             </label>
             <div>
@@ -74,6 +83,7 @@ class Creation extends Component{
               <input
                 type="text"
                 value={this.state.id}
+                placeholder="Only judges fill this"
                 onChange={this.handleJudgeKey} />
             </label>
             </div>
@@ -89,4 +99,4 @@ class Creation extends Component{
 
 const authCondition = (authUser) => !!authUser;
 
-export default withAuthorization(authCondition)(Creation);
+export default withAuthorization(authCondition)(Join);
