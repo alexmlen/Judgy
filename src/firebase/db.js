@@ -54,7 +54,6 @@ export const onceGetUser = (userId) =>
   export function getCompetitionName(compKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/competitionName");
-    var name = new String();
     return keyRef.once("value", function(snapshot){});
   }
 

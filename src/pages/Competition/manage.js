@@ -16,33 +16,45 @@ class Manage extends Component{
       competitionIDs: [''],
       competitionNames: [''],
     };
+    // db.getCompetitionName(auth.getUserID()).then(function(result){
+    //   result.forEach(function(child){
+    //     competitionIDs.push(child.val().compKey);
+    //   })
+    //   this.setState({competitionIDs});
+    // }.bind(this));
+  }
+
+  componentDidMount(){
     var competitionIDs = [];
     var competitionNames = [];
+    //Gets competition id's the user is a part of
     db.getCompetitions(auth.getUserID()).then(function(result){
       result.forEach(function(child){
         competitionIDs.push(child.val().compKey);
-      })
+        db.getCompetitionName(child.val().compKey).then(data =>{
+          competitionNames.push(data.val())
+          this.setState({competitionNames});
+        });
+      }.bind(this))
       this.setState({competitionIDs});
     }.bind(this));
 
-    // this.state.competitionIDs.forEach(function(element){
-    //   db.getCompetitionName(element).then(function(result){
-    //     // competitionNames.push(result.val());
-    //     this.setState(prevState => ({
-    //       competitionNames: [...prevState.competitionNames, result.val()]
-    //     }))
-    //   }.bind(this))
-    // })
-  }
-
-  doShowCompetitions(){
-    alert(this.state.competitionIDs);
   }
 
   doDisplayCompetitions(){
-    return this.state.competitionIDs.map((ids, i) =>
-      <div key={i}>
-        <li>{ids}</li>
+    var compids = [];
+    var compnames = [];
+    this.state.competitionNames.map((ids) =>
+      compnames.push(ids),
+    )
+    this.state.competitionIDs.map((ids, i) =>
+      compids.push(ids),
+    )
+    return compids.map((ids, i) =>
+      <div className="boxed">
+        <label>{compnames[i]}</label>
+        <div/>
+        <label>{ids}</label>
       </div>
     )
   }
@@ -53,6 +65,7 @@ class Manage extends Component{
       <div className="page-centered">
         <Sidebar />
         <div style={{flexGrow: 1}}>
+          <h1>Competitions You Are In</h1>
           {this.doDisplayCompetitions()}
         </div>
       </div>
