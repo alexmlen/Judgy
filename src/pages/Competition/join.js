@@ -40,33 +40,28 @@ class Join extends Component{
   }
 
   handleSubmit(event){
-    //var result = db.checkJudgeKey(this.state.competitionKey, this.state.id);
-    var compKey = this.state.competitionKey;
-    //alert(result);
     db.checkJudgeKey(this.state.competitionKey, this.state.id).then(function(result){
       var check = result.val();
       var confirm;
       if(check == this.state.id) {
-        alert("True");
+        //alert("True");
         confirm = true;
       } else {
-        alert("False");
+        //alert("False");
         confirm = false;
       }
-      db.getCompetitionName(this.state.competitionKey).then(function(test){
+      db.getCompetitionName(this.state.competitionKey).then(function(name){
         if(confirm){
-          db.joinCompetitionJudge(compKey, auth.getUserID());
+          db.joinCompetitionJudge(this.state.competitionKey, auth.getUserID());
           alert("You have successfully joined "
-          + test.val() + " as a judge.");
+          + name.val() + " as a judge.");
         } else {
-          db.joinCompetitionContestant(compKey, auth.getUserID());
+          db.joinCompetitionContestant(this.state.competitionKey, auth.getUserID());
           alert("You have successfully joined "
-          + test.val() + " as a contestant.");
+          + name.val() + " as a contestant.");
         };
       });
     }.bind(this));
-
-
     event.preventDefault();
   }
 
