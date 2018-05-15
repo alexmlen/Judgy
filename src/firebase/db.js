@@ -31,6 +31,18 @@ export const onceGetUser = (userId) =>
       judgeApplication,
       judgeKey,
     });
+    var ContInv = "localhost:3000/join?compKey=" + compKey;
+    var judgeInv = "localhost:3000/join?compKey=" + compKey + "&id=" + judgeKey;
+    var successMessage = 'You have successfully created ' + competitionName;
+    var contInvite = 'To invite a contestant share this link: \n' + ContInv;
+    var judgeInvite = 'To invite a judge share this link: \n' + judgeInv;
+    var returnMsg = 'You have successfully created ' + competitionName + "\n\n" + contInvite + "\n\n" + judgeInvite;
+    var returnArray = [];
+    returnArray.push(successMessage);
+    returnArray.push(contInvite);
+    returnArray.push(judgeInvite);
+    //alert('You have successfully created ' + competitionName + "\n\n" + contInvite + "\n\n" + judgeInvite);
+    return returnArray;
   }
 
   export function joinCompetitionContestant(compKey, contestant){
@@ -60,7 +72,7 @@ export const onceGetUser = (userId) =>
   export function checkJudgeKey(compKey, judgeKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
-    
+
     return keyRef.once("value", function(snapshot){});
   }
 

@@ -17,6 +17,9 @@ class Creation extends Component{
       competitorFields: [''],
       judgeFields: [''],
       redirect: false,
+      msg1: "",
+      msg2: "",
+      msg3: "",
     };
 
     this.handleCompetitionNameChange = this.handleCompetitionNameChange.bind(this);
@@ -27,14 +30,34 @@ class Creation extends Component{
     this.setState({competitionName: event.target.value});
   }
 
+  doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
+    var compKey = db.ref('/competitions/').push().key;
+    db.ref('/users/' + creator + '/competitions/').push({
+      compKey
+    });
+    var judgeKey = db.ref('/competitions/').push().key;
+    db.ref('/competitions/' + compKey).set({
+      competitionName,
+      creator,
+      competitorApplication,
+      judgeApplication,
+      judgeKey,
+    });
+  }
+
   handleSubmit(event){
-    db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
-    alert(this.state.competitionName + ' has been created.');
+    var msg = db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
+    //alert(this.state.competitionName + ' has been created.');
+    this.setState({
+      msg1: msg[0],
+      msg2: msg[1],
+      msg3: msg[2],
+    });
+    // http://localhost:3000/join?compKey=-LC5rgFUAxWnP5jHRPso&id=-LC5rgFVtc6kviMlK4AE
     // Testing url parse library
     // var search = new URLSearchParams(window.location.search);
     // db.testFunction(search.get("authKey"));
     event.preventDefault();
-    this.setState({ redirect: true });
   }
 
   doCreateCompetitorForm(){
@@ -138,6 +161,15 @@ class Creation extends Component{
             </div>
             <input type="submit" value="Submit" />
           </form>
+          <div>
+            <h2>{this.state.msg1}</h2>
+          </div>
+          <div>
+            <h2>{this.state.msg2}</h2>
+          </div>
+          <div>
+            <h2>{this.state.msg3}</h2>
+          </div>
         </div>
       </div>
     )
