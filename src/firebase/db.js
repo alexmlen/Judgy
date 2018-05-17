@@ -31,8 +31,8 @@ export const onceGetUser = (userId) =>
       judgeApplication,
       judgeKey,
     });
-    var ContInv = "localhost:3000/join?compKey=" + compKey;
-    var judgeInv = "localhost:3000/join?compKey=" + compKey + "&id=" + judgeKey;
+    var ContInv = "https://alexmlen.github.io/Judgy/join?compKey=" + compKey;
+    var judgeInv = "https://alexmlen.github.io/Judgy/join?compKey=" + compKey + "&id=" + judgeKey;
     var successMessage = 'You have successfully created ' + competitionName;
     var contInvite = 'To invite a contestant share this link: \n' + ContInv;
     var judgeInvite = 'To invite a judge share this link: \n' + judgeInv;
