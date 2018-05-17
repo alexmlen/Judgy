@@ -6,8 +6,15 @@ import { auth } from '../../firebase';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
+const style = {
+  textAlign: 'center',
+  padding: '1em',
+  float: 'center',
+  minWidth: "50vh",
+};
+
 const PasswordForgetPage = () =>
-  <div>
+  <div style={style}>
     <h1>PasswordForget</h1>
     <PasswordForgetForm />
   </div>
