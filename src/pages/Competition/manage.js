@@ -7,7 +7,15 @@ import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
 
+import Paper from 'material-ui/Paper';
+import Button from 'material-ui/Button';
+
 import 'url-search-params-polyfill';
+
+const centered = {
+  float: 'center',
+  flexGrow: 1,
+};
 
 class Manage extends Component{
   constructor(props){
@@ -51,10 +59,17 @@ class Manage extends Component{
       compids.push(ids),
     )
     return compids.map((ids, i) =>
-      <div className="boxed">
-        <label>{compnames[i]}</label>
-        <div/>
-        <label>{ids}</label>
+      <div className="boxed" style={{margin: "auto"}}>
+        <Paper elevation={4} style={{minWidth: "20em", minHeight: "5em",}}>
+          <label>{compnames[i]}</label>
+          <div/>
+          <label>{ids}</label>
+          <div>
+          <Button>Manage</Button>
+          <Button>Judges</Button>
+          <Button>Submissions</Button>
+          </div>
+        </ Paper>
       </div>
     )
   }
@@ -64,9 +79,11 @@ class Manage extends Component{
     return(
       <div className="page-centered">
         <Sidebar />
-        <div style={{flexGrow: 1}}>
+        <div style={centered}>
           <h1>Competitions You Are In</h1>
-          {this.doDisplayCompetitions()}
+          <div>
+            {this.doDisplayCompetitions()}
+          </div>
         </div>
       </div>
     )

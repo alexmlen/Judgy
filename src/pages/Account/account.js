@@ -7,7 +7,7 @@ import withAuthorization from '../../components/withAuth/withAuthorization';
 import Sidebar from '../../components/sidebar/sidebar';
 
 const AccountPage = () =>
-  <div className="page">
+<div className="page-centered">
   <Sidebar />
   <div style={{flexGrow: 1}}>
   <AuthUserContext.Consumer>

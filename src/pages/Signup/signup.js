@@ -2,8 +2,18 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+
+const style = {
+  textAlign: 'center',
+  padding: '1em',
+  float: 'center',
+  minWidth: "50vh",
+};
+
 const SignUpPage = ({ history }) =>
-  <div>
+  <div style={style}>
     <h1>SignUp</h1>
     <SignUpForm history={history} />
     <div>Enter a valid email and password.</div>
@@ -90,34 +100,39 @@ class SignUpForm extends Component {
       passwordOne.length < 8;
 
     return (
-      <form onSubmit={this.onSubmit}>
-        <input
+      
+      <form onSubmit={this.onSubmit} >
+        <TextField
           value={username}
           onChange={event => this.setState(byPropKey('username', event.target.value))}
           type="text"
           placeholder="Full Name"
         />
-        <input
+        <div/>
+        <TextField
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        <div/>
+        <TextField
           value={passwordOne}
           onChange={event => this.setState(byPropKey('passwordOne', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <input
+        <div/>
+        <TextField
           value={passwordTwo}
           onChange={event => this.setState(byPropKey('passwordTwo', event.target.value))}
           type="password"
           placeholder="Confirm Password"
         />
-        <button disabled={isInvalid} type="submit">
+        <div/>
+        <Button disabled={isInvalid} type="submit">
           Sign Up
-        </button>
+        </Button>
 
         { error && <p>{error.message}</p> }
       </form>

@@ -7,6 +7,8 @@ import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
 
+import TextField from 'material-ui/TextField';
+
 import 'url-search-params-polyfill';
 
 class Join extends Component{
@@ -78,8 +80,7 @@ class Join extends Component{
           <h1>Join a Competition</h1>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Competition Key:
-              <input
+              <TextField
                 type="text"
                 value={this.state.competitionKey}
                 placeholder="Competition key"
@@ -87,8 +88,7 @@ class Join extends Component{
             </label>
             <div>
             <label>
-              Judge ID:
-              <input
+              <TextField
                 type="text"
                 value={this.state.id}
                 placeholder="Only judges fill this"

@@ -22,5 +22,6 @@
 }
 
 .boxed {
-  border: 1px solid black;
+  max-width: 25%;
+  padding: 1em; 
 }

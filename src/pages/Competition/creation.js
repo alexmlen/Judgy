@@ -7,6 +7,9 @@ import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 import { auth } from '../../firebase';
 
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+
 import 'url-search-params-polyfill';
 
 class Creation extends Component{
@@ -62,16 +65,18 @@ class Creation extends Component{
 
   doCreateCompetitorForm(){
     return this.state.competitorFields.map((fields, i) =>
-      <div key={i}>
-        <input
+      <div key={i} style={{padding: "0.5em"}}>
+        <TextField
           type="text"
           placeholder={`Field #${i+1}`}
           value={fields||''}
           onChange={this.handleCompetitorFieldChange.bind(this, i)}/>
-        <input
+        <Button
           type='button'
+          variant="fab"
+          mini
           value="-"
-          onClick={this.handleRemoveCompetitorField.bind(this, i)}/>
+          onClick={this.handleRemoveCompetitorField.bind(this, i)}>-</Button>
       </div>
     )
   }
@@ -94,16 +99,18 @@ class Creation extends Component{
 
   doCreateJudgeForm(){
     return this.state.judgeFields.map((fields, i) =>
-      <div key={i}>
-        <input
+      <div key={i} style={{padding: "0.5em"}}>
+        <TextField
           type="text"
           placeholder={`Field #${i+1}`}
           value={fields||''}
           onChange={this.handleJudgeFieldChange.bind(this, i)}/>
-        <input
+        <Button
           type='button'
+          variant="fab"
+          mini
           value="-"
-          onClick={this.handleRemoveJudgeField.bind(this, i)}/>
+          onClick={this.handleRemoveJudgeField.bind(this, i)}>-</Button>
       </div>
     )
   }
@@ -137,29 +144,29 @@ class Creation extends Component{
           <h1>Create a Competition</h1>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Name of Competition:
-              <input
+              <TextField
                 type="text"
                 value={this.state.value}
-                onChange={this.handleCompetitionNameChange} />
+                placeholder="Name of Competition"
+                onChange={this.handleCompetitionNameChange}/>
             </label>
             <h4>Competitor Form Creation</h4>
             <div>
               {this.doCreateCompetitorForm()}
-              <input
+              <Button
                 type='button'
                 value='Add Field'
-                onClick={this.handleAddCompetitorField.bind(this)}/>
+                onClick={this.handleAddCompetitorField.bind(this)}>Add Field</Button>
             </div>
             <h4>Judge Form Creation</h4>
             <div>
               {this.doCreateJudgeForm()}
-              <input
+              <Button
                 type='button'
                 value='Add Field'
-                onClick={this.handleAddJudgeField.bind(this)}/>
+                onClick={this.handleAddJudgeField.bind(this)}>Add Field</Button>
             </div>
-            <input type="submit" value="Submit" />
+            <Button type="submit" value="Submit" variant="raised" >Submit</Button>
           </form>
           <div>
             <h2>{this.state.msg1}</h2>

@@ -6,12 +6,59 @@ import { PasswordForgetLink } from '../PasswordForget/passwordForget';
 import { auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 
+import TextField from 'material-ui/TextField';
+import Button from 'material-ui/Button';
+
+import logo from '../../images/logo.png';
+
+const style = {
+  textAlign: 'center',
+  padding: '1em',
+  float: 'center',
+  minWidth: "50vh",
+};
+
+const midDiv = {
+  height: "25%",
+  //minHeight: "50vh",
+};
+
+const page = {
+  height: "100%",
+  display: 'flex',
+};
+
+const pad = {
+  padding: '1em'
+};
+
+var bar = {
+  height: "100%",
+  minHeight: "100vh",
+  width: "50%",
+  maxWidth: "50vh",
+  minWidth: "10vh",
+  borderStyle: "solid",
+  borderWidth: "1px",
+  borderColor: "rgb(224,224,224)",
+  backgroundColor: "rgb(0,128,128)",
+  textAlign: "center",
+  paddingTop: '2em',
+  flex: 1,
+}
+
+
+
 const LoginPage = ({ history }) =>
-  <div>
-    <h1>Login</h1>
+  <div style={page}>
+  <div style={bar}/>
+  <div style={style}>
+    <div style={midDiv} />
+    <img src={logo} alt="logo" className="App-logo"/>
     <LoginForm history={history} />
     <PasswordForgetLink />
     <SignUpLink />
+  </div>
   </div>
 
 const byPropKey = (propertyName, value) => () => ({
@@ -70,21 +117,25 @@ class LoginForm extends Component {
 
     return (
       <form onSubmit={this.onSubmit}>
-        <input
+        <div style={style}>
+        <TextField
           value={email}
           onChange={event => this.setState(byPropKey('email', event.target.value))}
           type="text"
           placeholder="Email Address"
         />
-        <input
+        </div>
+        <div style={style}>
+        <TextField
           value={password}
           onChange={event => this.setState(byPropKey('password', event.target.value))}
           type="password"
           placeholder="Password"
         />
-        <button disabled={isInvalid} type="submit">
+        </div>
+        <Button disabled={isInvalid} type="submit">
           Login
-        </button>
+        </Button>
 
         { error && <p>{error.message}</p> }
       </form>
