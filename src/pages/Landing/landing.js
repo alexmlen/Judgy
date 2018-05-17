@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 import logo from '../../images/logo.png';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';

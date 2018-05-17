@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route } from "react-router-dom";
 import withAuthentication from './components/withAuth/withAuthentication';
 import LandingPage from './pages/Landing/landing';
 import HomePage from './pages/Home/home';

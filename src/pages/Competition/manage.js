@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/sidebar';
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 
 import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';

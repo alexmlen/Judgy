@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from '../../components/sidebar/sidebar';
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { HashRouter as Redirect } from "react-router-dom";
 
 import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';
@@ -42,6 +42,7 @@ class Join extends Component{
   }
 
   handleSubmit(event){
+    var that = this;
     db.checkJudgeKey(this.state.competitionKey, this.state.id).then(function(result){
       var check = result.val();
       var confirm;
@@ -52,13 +53,13 @@ class Join extends Component{
         //alert("False");
         confirm = false;
       }
-      db.getCompetitionName(this.state.competitionKey).then(function(name){
+      db.getCompetitionName(that.state.competitionKey).then(function(name){
         if(confirm){
-          db.joinCompetitionJudge(this.state.competitionKey, auth.getUserID());
+          db.joinCompetitionJudge(that.state.competitionKey, auth.getUserID());
           alert("You have successfully joined "
           + name.val() + " as a judge.");
         } else {
-          db.joinCompetitionContestant(this.state.competitionKey, auth.getUserID());
+          db.joinCompetitionContestant(that.state.competitionKey, auth.getUserID());
           alert("You have successfully joined "
           + name.val() + " as a contestant.");
         };
