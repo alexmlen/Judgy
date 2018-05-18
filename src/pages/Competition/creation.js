@@ -16,7 +16,7 @@ class Creation extends Component{
   constructor(props){
     super(props);
     this.state = {
-      competitionName: 'Enter a name for the competition',
+      competitionName: '',
       competitorFields: [''],
       judgeFields: [''],
       redirect: false,
@@ -33,29 +33,19 @@ class Creation extends Component{
     this.setState({competitionName: event.target.value});
   }
 
-  doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
-    var compKey = db.ref('/competitions/').push().key;
-    db.ref('/users/' + creator + '/competitions/').push({
-      compKey
-    });
-    var judgeKey = db.ref('/competitions/').push().key;
-    db.ref('/competitions/' + compKey).set({
-      competitionName,
-      creator,
-      competitorApplication,
-      judgeApplication,
-      judgeKey,
-    });
-  }
-
   handleSubmit(event){
-    var msg = db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
-    //alert(this.state.competitionName + ' has been created.');
-    this.setState({
-      msg1: msg[0],
-      msg2: msg[1],
-      msg3: msg[2],
-    });
+    if(!this.state.competitionName == '' || !this.state.competitionName == ' '){
+      var msg = db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
+      //alert(this.state.competitionName + ' has been created.');
+      this.setState({
+        msg1: msg[0],
+        msg2: msg[1],
+        msg3: msg[2],
+      });
+    }
+    else{
+      alert("Competition name cannot be blank.");
+    }
     // http://localhost:3000/join?compKey=-LC5rgFUAxWnP5jHRPso&id=-LC5rgFVtc6kviMlK4AE
     // Testing url parse library
     // var search = new URLSearchParams(window.location.search);

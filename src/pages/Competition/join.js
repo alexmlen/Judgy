@@ -44,26 +44,31 @@ class Join extends Component{
   handleSubmit(event){
     var that = this;
     db.checkJudgeKey(this.state.competitionKey, this.state.id).then(function(result){
-      var check = result.val();
-      var confirm;
-      if(check == this.state.id) {
-        //alert("True");
-        confirm = true;
-      } else {
-        //alert("False");
-        confirm = false;
-      }
-      db.getCompetitionName(that.state.competitionKey).then(function(name){
-        if(confirm){
-          db.joinCompetitionJudge(that.state.competitionKey, auth.getUserID());
-          alert("You have successfully joined "
-          + name.val() + " as a judge.");
+      if(result.exists()){
+        var check = result.val();
+        var confirm;
+        if(check == this.state.id) {
+          //alert("True");
+          confirm = true;
         } else {
-          db.joinCompetitionContestant(that.state.competitionKey, auth.getUserID());
-          alert("You have successfully joined "
-          + name.val() + " as a contestant.");
-        };
-      });
+          //alert("False");
+          confirm = false;
+        }
+        db.getCompetitionName(that.state.competitionKey).then(function(name){
+          if(confirm){
+            db.joinCompetitionJudge(that.state.competitionKey, auth.getUserID());
+            alert("You have successfully joined "
+            + name.val() + " as a judge.");
+          } else {
+            db.joinCompetitionContestant(that.state.competitionKey, auth.getUserID());
+            alert("You have successfully joined "
+            + name.val() + " as a contestant.");
+          };
+        });
+      }
+    else{
+      alert("That competition doesn't exist");
+    }
     }.bind(this));
     event.preventDefault();
   }

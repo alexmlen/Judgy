@@ -45,6 +45,12 @@ export const onceGetUser = (userId) =>
     return returnArray;
   }
 
+  export function checkCompetitionKey(compKey){
+    var rootRef = db.ref();
+    var keyRef = rootRef.child("competitions/" + compKey);
+
+  }
+
   export function joinCompetitionContestant(compKey, contestant){
     db.ref('/competitions/' + compKey + '/constestant/').push({
       contestant
