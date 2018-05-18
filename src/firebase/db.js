@@ -60,6 +60,12 @@ export const onceGetUser = (userId) =>
     });
   }
 
+  export function getCompetitorApplication(compKey){
+    var rootRef = db.ref();
+    var keyRef = rootRef.child("competitions/" + compKey + "/competitorApplication")
+    return keyRef.once("value", function(snapshot){});
+  }
+
   export function joinCompetitionJudge(compKey, judge){
     db.ref('/competitions/' + compKey + '/judge/').push({
       judge
