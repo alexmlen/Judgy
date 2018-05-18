@@ -7,6 +7,7 @@ Libraries used are
 - Firebase
 - React Router Dom
 - URLSearchParams Polyfill (npm install url-search-params-polyfill)
+- Github Pages
 
 IDE's used
 
