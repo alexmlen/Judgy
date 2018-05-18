@@ -18,3 +18,20 @@ Other Programs
 
 - Adobe XD
 - Adobe Photoshop
+
+Aaron's Atom Addons
+
+- atom-beautify
+- atom-ternjs
+- autoclose-html
+- autocomplete-modules
+- busy-signal
+- color-picker
+- docblockr
+- emmet
+- highlight-selected
+- intentions
+- linter
+- linter-ui-default
+- prettier-atom
+- react
