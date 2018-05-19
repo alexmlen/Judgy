@@ -17,25 +17,23 @@ const centered = {
   flexGrow: 1,
 };
 
+// Created the manage competition page
 class Manage extends Component{
   constructor(props){
     super(props);
+    // Initializes state with blank Id and name
     this.state = {
       competitionIDs: [''],
       competitionNames: [''],
     };
-    // db.getCompetitionName(auth.getUserID()).then(function(result){
-    //   result.forEach(function(child){
-    //     competitionIDs.push(child.val().compKey);
-    //   })
-    //   this.setState({competitionIDs});
-    // }.bind(this));
   }
 
+  // After page is loaded
   componentDidMount(){
     var competitionIDs = [];
     var competitionNames = [];
-    //Gets competition id's the user is a part of
+    // Gets competition id's the user is a part of as well as the names
+    // and stores them in the state under competitionIDs and competitionNames respectively
     db.getCompetitions(auth.getUserID()).then(function(result){
       result.forEach(function(child){
         competitionIDs.push(child.val().compKey);
@@ -49,15 +47,20 @@ class Manage extends Component{
 
   }
 
+  // Displays the competitons the user is in
   doDisplayCompetitions(){
     var compids = [];
     var compnames = [];
+    // Stores the array of names into compnames array
     this.state.competitionNames.map((ids) =>
       compnames.push(ids),
     )
+    // Stores the array of IDs into the compids array
     this.state.competitionIDs.map((ids, i) =>
       compids.push(ids),
     )
+    // renders the information for the user as well as three buttons
+    // that currently do nothing
     return compids.map((ids, i) =>
       <div className="boxed" style={{margin: "auto"}}>
         <Paper elevation={4} style={{minWidth: "20em", minHeight: "5em",}}>

@@ -18,6 +18,15 @@ export const onceGetUser = (userId) =>
   export const onceGetData = (data) =>
   db.ref('/users/' + data).once('value');
 
+  // Takes competitionName, creator, competitorApplication array, and judgeApplication array
+  // Stores the information in the database under competitions/compKey
+  // Generates a judgekey and stores it in the competition as well
+  // Stores creator and the 2 arrays
+  //
+  // Returns an array of 3 messages
+  // Competition created successfully message
+  // Competitor invite link
+  // Judge invite link
   export function doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
     var compKey = db.ref('/competitions/').push().key;
     db.ref('/users/' + creator + '/competitions/').push({
@@ -45,12 +54,16 @@ export const onceGetUser = (userId) =>
     return returnArray;
   }
 
+  // Does nothing as you should check a competitionkey by checking whether or
+  // not a directory contains a judge key to be more efficient
   export function checkCompetitionKey(compKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey);
 
   }
 
+  // Inputs data into the database assuming the contestant's userID
+  // is trying to join as a contestant
   export function joinCompetitionContestant(compKey, contestant){
     db.ref('/competitions/' + compKey + '/constestant/').push({
       contestant
@@ -60,12 +73,18 @@ export const onceGetUser = (userId) =>
     });
   }
 
+  // Grabs the arrays that contain the competitor application that they
+  // should be filling out to join the competition
+  //
+  // Returns a promise object that must be fulfilled in the function being used
+  // Promise object contains an array of the fields to be used
   export function getCompetitorApplication(compKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/competitorApplication")
     return keyRef.once("value", function(snapshot){});
   }
 
+  // Joins a competition with the user being added as a judge
   export function joinCompetitionJudge(compKey, judge){
     db.ref('/competitions/' + compKey + '/judge/').push({
       judge
@@ -75,12 +94,20 @@ export const onceGetUser = (userId) =>
     });
   }
 
+  // Grabs the competitionName located in the database under the compKey
+  //
+  // Returns a promise object that must be fulfilled in the function it is being used in
+  // Promise object result contains the name of the competition
   export function getCompetitionName(compKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/competitionName");
     return keyRef.once("value", function(snapshot){});
   }
 
+  // Checks the judge key with the one stored in the database
+  //
+  // Returns a promise object that must be fulfilled in the function it is being used in
+  // Promise object result contains that competitions judgeKey
   export function checkJudgeKey(compKey, judgeKey){
     var rootRef = db.ref();
     var keyRef = rootRef.child("competitions/" + compKey + "/judgeKey");
@@ -88,6 +115,10 @@ export const onceGetUser = (userId) =>
     return keyRef.once("value", function(snapshot){});
   }
 
+  // Gets the competitions that the user is partaking in
+  //
+  // Returns a promise object that must be fulfilled in the function it is being used in
+  // Promise object result contains an array of competitionKeys
   export function getCompetitions(authID){
     var rootRef = db.ref();
     var keyRef = rootRef.child("users/" + authID + "/competitions");

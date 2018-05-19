@@ -12,9 +12,11 @@ import Button from 'material-ui/Button';
 
 import 'url-search-params-polyfill';
 
+//Creates Competition Creation class
 class Creation extends Component{
   constructor(props){
     super(props);
+    //Initializes state variables
     this.state = {
       competitionName: '',
       competitorFields: [''],
@@ -25,18 +27,21 @@ class Creation extends Component{
       msg3: "",
     };
 
+    //Binds buttons and functions
     this.handleCompetitionNameChange = this.handleCompetitionNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  // Handles name change text field for competition
   handleCompetitionNameChange(event){
     this.setState({competitionName: event.target.value});
   }
-
+  // Handles event when user clicks the submit button
   handleSubmit(event){
+    //Checks to make sure the competition name is filled in
     if(!this.state.competitionName == '' || !this.state.competitionName == ' '){
       var msg = db.doCreateCompetition(this.state.competitionName, auth.getUserID(), this.state.competitorFields, this.state.judgeFields);
-      //alert(this.state.competitionName + ' has been created.');
+      //Recieves the links as well as compettion creation confirmation message
       this.setState({
         msg1: msg[0],
         msg2: msg[1],
@@ -44,15 +49,15 @@ class Creation extends Component{
       });
     }
     else{
+      //Alerts user that competition name is blank
       alert("Competition name cannot be blank.");
     }
-    // http://localhost:3000/join?compKey=-LC5rgFUAxWnP5jHRPso&id=-LC5rgFVtc6kviMlK4AE
-    // Testing url parse library
-    // var search = new URLSearchParams(window.location.search);
-    // db.testFunction(search.get("authKey"));
+    //Prevents refresh of page when submit button is clicked
     event.preventDefault();
   }
 
+  //Creates forms for Creator to fill that is later used to ask user when they
+  //enter a competition
   doCreateCompetitorForm(){
     return this.state.competitorFields.map((fields, i) =>
       <div key={i} style={{padding: "0.5em"}}>
@@ -71,22 +76,26 @@ class Creation extends Component{
     )
   }
 
+  //Handles when a field is changed
   handleCompetitorFieldChange(i, event){
     let competitorFields = [...this.state.competitorFields];
     competitorFields[i] = event.target.value;
     this.setState({ competitorFields });
   }
 
+  //Handles when a field is added
   handleAddCompetitorField(){
     this.setState(prevState => ({ competitorFields: [...prevState.competitorFields, '']}))
   }
 
+  //Handles when a field is removed
   handleRemoveCompetitorField(i){
     let competitorFields = [...this.state.competitorFields];
     competitorFields.splice(i, 1);
     this.setState({ competitorFields });
   }
 
+  //Same thing as above but for judging forms
   doCreateJudgeForm(){
     return this.state.judgeFields.map((fields, i) =>
       <div key={i} style={{padding: "0.5em"}}>
