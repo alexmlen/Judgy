@@ -59,8 +59,8 @@ class Manage extends Component{
     this.state.competitionIDs.map((ids, i) =>
       compids.push(ids),
     )
-    // renders the information for the user as well as three buttons
-    // that currently do nothing
+    // renders the competition name, competition key, as well as
+    // three buttons that currently do nothing per competition
     return compids.map((ids, i) =>
       <div className="boxed" style={{margin: "auto"}}>
         <Paper elevation={4} style={{minWidth: "20em", minHeight: "5em",}}>

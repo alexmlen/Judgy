@@ -76,26 +76,31 @@ class Creation extends Component{
     )
   }
 
-  //Handles when a field is changed
+  // Handles when a field is changed
+  // Takes old state array, stores it in a new var competitorFields
+  // Edits current array location to be updated with event variable
   handleCompetitorFieldChange(i, event){
     let competitorFields = [...this.state.competitorFields];
     competitorFields[i] = event.target.value;
     this.setState({ competitorFields });
   }
 
-  //Handles when a field is added
+  // Handles when a field is added
+  // Takes old array, clones it and adds another blank slot
   handleAddCompetitorField(){
     this.setState(prevState => ({ competitorFields: [...prevState.competitorFields, '']}))
   }
 
-  //Handles when a field is removed
+  // Handles when a field is removed
+  // Takes old array and removes location i
   handleRemoveCompetitorField(i){
     let competitorFields = [...this.state.competitorFields];
     competitorFields.splice(i, 1);
     this.setState({ competitorFields });
   }
 
-  //Same thing as above but for judging forms
+  // Judge functions are programmed the exact same way as competitor functions
+  // Only difference is in the name of the function
   doCreateJudgeForm(){
     return this.state.judgeFields.map((fields, i) =>
       <div key={i} style={{padding: "0.5em"}}>
@@ -114,16 +119,22 @@ class Creation extends Component{
     )
   }
 
+  // Judge functions are programmed the exact same way as competitor functions
+  // Only difference is in the name of the function
   handleJudgeFieldChange(i, event){
     let judgeFields = [...this.state.judgeFields];
     judgeFields[i] = event.target.value;
     this.setState({ judgeFields });
   }
 
+  // Judge functions are programmed the exact same way as competitor functions
+  // Only difference is in the name of the function
   handleAddJudgeField(){
     this.setState(prevState => ({ judgeFields: [...prevState.judgeFields, '']}))
   }
 
+  // Judge functions are programmed the exact same way as competitor functions
+  // Only difference is in the name of the function
   handleRemoveJudgeField(i){
     let judgeFields = [...this.state.judgeFields];
     judgeFields.splice(i, 1);
@@ -131,10 +142,11 @@ class Creation extends Component{
   }
 
   render(){
+    // One way to deal with a redirect
     // if(this.state.redirect){
     //   return <Redirect to="/home"/>
     // }
-    // Persistence is broken as it takes you to login screen
+    // However, login persistence is broken as it will prompt you to re-login
 
     return(
       <div className="page-centered">

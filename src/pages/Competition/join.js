@@ -15,7 +15,7 @@ import 'url-search-params-polyfill';
 class Join extends Component{
   constructor(props){
     super(props);
-    //Reads URL for certain parameters
+    //Reads URL for compKey and id(judgekey) parameters
     var search = new URLSearchParams(window.location.search);
     this.state = {
       competitionKey: search.get("compKey"),
@@ -37,9 +37,9 @@ class Join extends Component{
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //Updates state with the competition key.
-  //Attempts to grab name from database, however promise Object
-  //is used incorrectly here so it does nothing.
+  // Updates state with the competition key.
+  // Attempts to grab name from database, however promise Object
+  // is used incorrectly here which means it will do nothing.
   handleCompetitionKey(event){
     this.setState({
       competitionKey: event.target.value,
@@ -50,12 +50,12 @@ class Join extends Component{
     });
   }
 
-  //Updates the state with the judge key if provided
+  // Updates the state with the judge key that is provided
   handleJudgeKey(event){
     this.setState({id: event.target.value})
   }
 
-  //Does nothing at the moment
+  // Does nothing as there was miscommunication on how competitor forms are submitted
   handleCompetitionSubmission(event){
     this.setState({
       competitorSubmission: event.target.value,
@@ -103,7 +103,8 @@ class Join extends Component{
               joined: true,
               competitionName: name.val()
             })
-            // This shouldn't be here, however competitor join isn't complete
+            // This shouldn't be here and should instead be in other submit button,
+            // however competitor join isn't fully implemented
             db.joinCompetitionContestant(that.state.competitionKey, auth.getUserID());
           };
         }.bind(this));

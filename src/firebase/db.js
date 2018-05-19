@@ -3,18 +3,22 @@ import { auth } from './firebase';
 
 // User API
 
+// Creates a user in the database
 export const doCreateUser = (id, username, email) =>
   db.ref(`users/${id}`).set({
     username,
     email,
   });
 
+// Grabs all users in the database?
 export const onceGetUsers = () =>
   db.ref('users').once('value');
 
+// Gets all the information on a single user
 export const onceGetUser = (userId) =>
   db.ref('/users/' + userId).once('value');
 
+// Gets all the information on a single user
   export const onceGetData = (data) =>
   db.ref('/users/' + data).once('value');
 
@@ -23,10 +27,10 @@ export const onceGetUser = (userId) =>
   // Generates a judgekey and stores it in the competition as well
   // Stores creator and the 2 arrays
   //
-  // Returns an array of 3 messages
-  // Competition created successfully message
-  // Competitor invite link
-  // Judge invite link
+  // Returns an array of 3 messages:
+  // 1. Competition created successfully message
+  // 2. Competitor invite link
+  // 3. Judge invite link
   export function doCreateCompetition(competitionName, creator, competitorApplication, judgeApplication){
     var compKey = db.ref('/competitions/').push().key;
     db.ref('/users/' + creator + '/competitions/').push({
