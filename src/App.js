@@ -17,6 +17,7 @@ import { auth } from './firebase/firebase';
 
 import * as routes from './constants/routes';
 
+// Main for webapp. Handles redirects to various pages
 class App extends Component {
   render() {
     return (
