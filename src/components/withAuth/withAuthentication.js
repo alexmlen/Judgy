@@ -2,6 +2,8 @@ import React from 'react';
 import AuthUserContext from './AuthUserContext';
 import { firebase } from '../../firebase';
 
+// User account is now verified; user can now login in with credentials and user login data is now in database
+
 const withAuthentication = (Component) => {
   class WithAuthentication extends React.Component {
     constructor(props) {
@@ -16,7 +18,7 @@ const withAuthentication = (Component) => {
       firebase.auth.onAuthStateChanged(authUser => {
         authUser
           ? this.setState(() => ({ authUser }))
-          : this.setState(() => ({ authUser: null }));
+          : this.setState(() => ({ authUser: null })); //updates state of user account
       });
     }
 

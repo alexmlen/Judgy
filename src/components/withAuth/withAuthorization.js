@@ -5,6 +5,9 @@ import AuthUserContext from './AuthUserContext';
 import { firebase, db, auth } from '../../firebase';
 import * as routes from '../../constants/routes';
 
+// This code deals with the intial user authorization and authentication process
+// authorization state == unverified state of user account
+
 const withAuthorization = (authCondition) => (Component) => {
   class WithAuthorization extends React.Component {
     componentDidMount() {
