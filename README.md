@@ -21,6 +21,8 @@ Other Programs
 
 Aaron's Atom Addons
 
+Source for addon references: https://medium.com/productivity-freak/my-atom-editor-setup-for-js-react-9726cd69ad20
+
 - atom-beautify
 - atom-ternjs
 - autoclose-html
