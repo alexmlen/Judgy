@@ -5,9 +5,13 @@ import { auth } from '../../firebase';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
+// helps change the password upon user request 
+
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
+
+// sets initial state of email text field to empty
 
 const INITIAL_STATE = {
   passwordOne: '',
@@ -21,6 +25,8 @@ class PasswordChangeForm extends Component {
 
     this.state = { ...INITIAL_STATE };
   }
+
+// controller for entered email ID data for which password will be reset
 
   onSubmit = (event) => {
     const { passwordOne } = this.state;

@@ -11,6 +11,8 @@ import Button from 'material-ui/Button';
 
 import logo from '../../images/logo.png';
 
+// This file contains the login screen
+
 const style = {
   textAlign: 'center',
   padding: '1em',
@@ -32,6 +34,7 @@ const pad = {
   padding: '1em'
 };
 
+// the bar variable is the large blue bar at the right on the login page
 var bar = {
   height: "100%",
   minHeight: "100vh",
@@ -47,7 +50,7 @@ var bar = {
   flex: 1,
 }
 
-
+// LoginPage sets up the logo, email ID, Forgot link and the Sign up options
 
 const LoginPage = ({ history }) =>
   <div style={page}>
@@ -65,6 +68,7 @@ const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
 
+// sets the inial states for each of the text fields to empty
 const INITIAL_STATE = {
   email: '',
   password: '',
@@ -81,7 +85,7 @@ class LoginForm extends Component {
   componentDidMount() {
 
   }
-
+ // onSubmit: defines what happens upon ckicking the "login" button
   onSubmit = (event) => {
     const {
       email,

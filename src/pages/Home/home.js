@@ -6,6 +6,9 @@ import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 
+// The home page view; renders logo, welcome text and is supposed to show
+// the list of competitions that the user signed up for
+
 class Home extends Component {
   constructor(props) {
     super(props);
@@ -20,9 +23,9 @@ class Home extends Component {
       <div className="page-centered">
         <Sidebar/>
         <div style={{flexGrow: 1}}>
-        <img src={logo} alt="logo" className="App-logo"/>
-        <p>This is the home page!</p>
-        <p>The Home Page is accessible by every signed in user.</p>
+        <img src={logo} alt="logo" className="App-logo"/> //inserts logo image
+        <p>This is the home page!</p>                     // inserts subtext
+        <p>The Home Page is accessible by every signed in user.</p> // more subtext
         </div>
       </div>
     );

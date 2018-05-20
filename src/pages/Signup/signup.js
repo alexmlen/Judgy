@@ -5,12 +5,16 @@ import { auth, db } from '../../firebase';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
+// deals with the case where a user has to register for the Judgy platform
+
 const style = {
   textAlign: 'center',
   padding: '1em',
   float: 'center',
   minWidth: "50vh",
 };
+
+// renders the stlye and description of the sign up page
 
 const SignUpPage = ({ history }) =>
   <div style={style}>
@@ -19,6 +23,8 @@ const SignUpPage = ({ history }) =>
     <div>Enter a valid email and password.</div>
     <div>Passwords must be at least 8 characters.</div>
   </div>
+
+// sets initial state of text fields to be filled out for registration to empty
 
 const INITIAL_STATE = {
   username: '',
@@ -92,6 +98,8 @@ class SignUpForm extends Component {
       error,
     } = this.state;
 
+    // defines case where the password entered does not match or fields are left empty
+
     const isInvalid =
       passwordOne !== passwordTwo ||
       passwordOne === '' ||
@@ -100,7 +108,7 @@ class SignUpForm extends Component {
       passwordOne.length < 8;
 
     return (
-      
+
       <form onSubmit={this.onSubmit} >
         <TextField
           value={username}

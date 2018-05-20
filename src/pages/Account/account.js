@@ -6,6 +6,8 @@ import PasswordChangeForm from '../PasswordChange/passwordChange';
 import withAuthorization from '../../components/withAuth/withAuthorization';
 import Sidebar from '../../components/sidebar/sidebar';
 
+// Setting Page; the options rendered on the setting page
+
 const AccountPage = () =>
 <div className="page-centered">
   <Sidebar />
@@ -13,8 +15,8 @@ const AccountPage = () =>
   <AuthUserContext.Consumer>
     {authUser =>
       <div>
-        <h1>Account: {authUser.email}</h1>
-        <PasswordForgetForm />
+        <h1>Account: {authUser.email}</h1> // account name
+        <PasswordForgetForm />            //  option in case user wishes to change password
         <PasswordChangeForm />
       </div>
     }

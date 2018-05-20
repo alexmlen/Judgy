@@ -4,6 +4,8 @@ import AuthUserContext from '../../components/withAuth/AuthUserContext';
 import withAuthorization from '../../components/withAuth/withAuthorization';
 import { db } from '../../firebase';
 
+// admin rules/ view; for users with admin priveleges
+
 class AdminPage extends Component {
   constructor(props) {
     super(props);

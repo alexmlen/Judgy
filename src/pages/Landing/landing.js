@@ -5,6 +5,9 @@ import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 import Divider from 'material-ui/Divider';
 
+// this code is executed as soon as the user logs in
+// the home page is set as the default go-to right after the login 
+
 const styles = {
   container: {
     display: 'flex',
@@ -56,7 +59,7 @@ class Landing extends Component {
 
     return (
       <div className="landing">
-        <Redirect from="/" to="/login" />  
+        <Redirect from="/" to="/login" />
         <img src={logo} alt="logo" className="App-logo"/>
         <form className={styles.container}>
           <div>
@@ -86,7 +89,7 @@ class Landing extends Component {
         <Button variant="raised" onClick={this.handleClick.bind(this)} >Sign in</Button>
         <p></p>
         <div>
-        <Divider/> 
+        <Divider/>
         </div>
         <p style={styles.text}>
               Not a user? <a href="https://my.sjsu.edu/">Register here</a>

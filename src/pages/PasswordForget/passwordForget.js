@@ -6,6 +6,8 @@ import { auth } from '../../firebase';
 import TextField from 'material-ui/TextField';
 import Button from 'material-ui/Button';
 
+// in case user forgets password, this shall help reset it
+
 const style = {
   textAlign: 'center',
   padding: '1em',
@@ -22,6 +24,8 @@ const PasswordForgetPage = () =>
 const byPropKey = (propertyName, value) => () => ({
   [propertyName]: value,
 });
+
+// sets intial state of email ID text field
 
 const INITIAL_STATE = {
   email: '',
@@ -74,6 +78,8 @@ class PasswordForgetForm extends Component {
     );
   }
 }
+
+// generates hyperlink got forgot password option
 
 const PasswordForgetLink = () =>
   <p>
